@@ -1,15 +1,15 @@
 import colors from 'colors';
 import mongoose from "mongoose";
 
-export const connectDB = async (): Promise<void> => {
+export const connectDB = async () => {
     try {
         const url = process.env.MONGODB_URI;
         if (!url) {
-            throw new  Error(colors.bgRed.white.bold("❌ MONGODB_URI no está definido en las variables de entorno"));
+            throw new  Error(colors.red.bold("❌ MONGODB_URI no está definido en las variables de entorno"));
         }
         const { connection } = await mongoose.connect(url);
         console.log(
-            colors.bgGreen.white.bold(`✅ Base de datos conectada: ${connection.host}:${connection.port}/${connection.name}`)
+            colors.dim.bold(` :: ✅ Base de datos conectada:: ${connection.host}:${connection.port}/${connection.name}`)
         );
     } catch (error) {
         console.error(colors.bgRed.white.bold("❌ Error al conectar a la base de datos:"), error);
