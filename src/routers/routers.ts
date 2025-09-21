@@ -1,20 +1,15 @@
 import { Router } from "express";
+import { createAccount } from "../handlers";
+import { registerValidation } from "../utils/authValidations";
 
 const router = Router();
 
 //Routing
 
-/* Autenticacion y Registro */
-router.post('/auth/register', (req, res) => {
-  // Lógica de registro
-//   res.send('Usuario registrado');
-    console.log(req.body);
-
-});
-
-router.post('/auth/login', (req, res) => {
-  // Lógica de inicio de sesión
-  res.send('Usuario autenticado');
-});
+/* Registro. y Autenticacion */
+router.post('/auth/register',
+    registerValidation,
+    createAccount,
+);
 
 export default router;
