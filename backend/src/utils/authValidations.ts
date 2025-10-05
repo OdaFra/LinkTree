@@ -24,7 +24,21 @@ export const registerValidation = [
         .notEmpty()
         .withMessage('La contraseña es requerida')
         .isLength({ min: 8 })
-        .withMessage('La contraseña debe tener al menos 6 caracteres')
+        .withMessage('La contraseña debe tener al menos 8 caracteres')
         .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/)
         .withMessage('La contraseña debe contener al menos una mayúscula, una minúscula y un número')
 ];
+
+export const loginValidation =[
+     body('email')
+        .notEmpty()
+        .withMessage('El correo electrónico es requerido')
+        .isEmail()
+        .withMessage('Debe ser un correo electrónico válido')
+        .normalizeEmail(),
+
+    body('password')
+        .notEmpty()
+        .withMessage('La contraseña es requerida')
+        .isLength({ min: 8 })       
+]
